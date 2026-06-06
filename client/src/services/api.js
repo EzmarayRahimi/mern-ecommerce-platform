@@ -1,7 +1,7 @@
-import axios from 'axios'
+// import axios from 'axios'
 
 
 
-const API = 'http://localhost:3000/api/products'
+// const API = 'http://localhost:3000/api/products'
 
-export const getProducts = ()=> axios.get(API) 
+// export const getProducts = ()=> axios.get(API) 
