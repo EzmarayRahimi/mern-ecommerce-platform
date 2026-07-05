@@ -1,20 +1,23 @@
-import {Link} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import {useAuth} from '../context/AuthContext'
 
 
 
 export default function Header(){
-    
-    const {userInfo } = useAuth()
+    const navigate = useNavigate()
+    const {userInfo ,logoutUser} = useAuth()
                     
-
+const handlLogout=()=> {
+        logoutUser()
+        navigate("/login")
+}
 return(
 
 <header>
     <Link to="/">Home </Link>
     {userInfo ? (<span>Wellcome Mr/Mss {userInfo.name}</span>):(<Link to="/login">Login</Link>)}
 
-   
+      <button onClick={handlLogout}> <span> ________</span>LogOut</button>
 </header>
 
 )
