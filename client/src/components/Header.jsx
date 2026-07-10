@@ -15,6 +15,7 @@ return(
 
 <header>
     <Link to="/">Home </Link>
+    <Link to="/register">Register</Link>
     {userInfo ? (<span>Wellcome Mr/Mss {userInfo.name}</span>):(<Link to="/login">Login</Link>)}
 
       <button onClick={handlLogout}> <span> ________</span>LogOut</button>
