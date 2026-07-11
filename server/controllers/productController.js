@@ -12,7 +12,7 @@ const createProduct = async (req , res , next )=>{
             const product = new Product({
                 name,
                 price,
-                imagepaths,
+                images:  imagepaths,
                 description ,
                 category,
                 rating
@@ -111,10 +111,10 @@ const updateProduct = async (req , res , next ) =>{
            }
 
 
-           const {name , price , description , countInStock , rating} = req.body 
+           const {name , price , description,category , countInStock , rating} = req.body 
 
            if(req.files && req.files.length > 0){
-            product.images = req.files.map(fiel => `/${file.path}`)
+            product.images = req.files.map(file => `/${file.path}`)
            }
 
  product.name = name || product.name 

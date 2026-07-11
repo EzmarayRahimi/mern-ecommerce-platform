@@ -3,10 +3,10 @@ const { protect, admin } = require('../middleware/authMiddleware')
 const router = require('express').Router()
 
 // get all products
-router.get('/',protect,getProducts)
+router.get('/',getProducts)
 
 // create a new product
-router.post('/',protect,admin,createProduct)
+router.post('/',createProduct)
 
 //get product by id 
 router.get('/:id',protect,getProductById)
