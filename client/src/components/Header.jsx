@@ -13,7 +13,9 @@ const handlLogout=()=> {
 }
 return(
 
-<header>
+<header 
+       className='flex items-center gap-6'
+>
     <Link to="/">Home </Link>
     <Link to="/register">Register</Link>
     <Link to="/profile">Profile</Link>

@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react"
 import productService from "../services/productService"
+import ProductCart from "../components/ProductCart"
 
 function HomePage(){
 
@@ -43,11 +44,10 @@ if(error){
     <div>
         <h1>HOME PAGE</h1>
     {products.length === 0 ? (<h3>Not any products to show</h3>):(products.map((product)=>(
-        <div key={product._id}>
-            <h1>{product.name}</h1>
-            <h3>Price : $ {product.price}</h3>
-            <p>{product.description}</p>
-        </div>
+       <ProductCart
+               key={product._id}
+               product={product}
+       />
     )))}
 
     </div>
