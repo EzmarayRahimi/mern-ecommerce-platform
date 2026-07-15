@@ -1,4 +1,4 @@
-
+   import { Link } from "react-router-dom"
 
 function   ProductCart({product}){
 
@@ -21,7 +21,9 @@ function   ProductCart({product}){
     <p><strong>Category: </strong>{product.category}</p>
     <p><strong>Rating: </strong>{product.rating}</p>
 
-
+        <Link to={`/product/${product._id}`}>
+        Veiw Details
+        </Link>
     </div>
 
     )

@@ -9,7 +9,7 @@ router.get('/',getProducts)
 router.post('/',createProduct)
 
 //get product by id 
-router.get('/:id',protect,getProductById)
+router.get('/:id',getProductById)
 
 //update products 
 router.put('/:id',protect,admin, updateProduct)

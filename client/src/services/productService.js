@@ -7,8 +7,15 @@ const getProducts = async ()=>{
         return data ;
 }
 
+const getProductById = async (id)=>{
+    const {data} = await api.get(`/products/${id}` )
+
+    return data ;
+}
 const productService = {
-    getProducts
+    getProducts,
+    getProductById
+
 }
 
 export default productService
