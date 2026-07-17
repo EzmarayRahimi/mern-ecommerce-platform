@@ -1,9 +1,12 @@
 import { useState,useEffect } from "react";
 import {useParams} from 'react-router-dom';
 import productService from "../services/productService";
-
+import { useCart } from "../context/CartContext";
 
 function ProductDetailsPage(){
+
+
+    const {addToCart} = useCart()
       
     const {id} = useParams()
     console.log(id)
@@ -58,7 +61,11 @@ return(
       <p><strong>Category: </strong>{product.category}</p>
       <p><strong>Rating: </strong>{product.rating}</p>
       <p><strong>Stock: </strong>{product.countInStock}</p>
-      <button>Add To Cart</button>
+      <button
+      onClick={()=>
+        addToCart(product)}>
+            Add To Cart
+      </button>
     </div>
 )
 
