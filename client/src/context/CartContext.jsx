@@ -45,12 +45,13 @@ const CartContext = createContext();
   };
 
   const updateQuantity =(id,qty)=>{
-    setCartItems(
-        cartItems.map((itme)=> 
-            item._id === id ? {
+    setCartItems(   cartItems.map((item)=> 
+        item._id === id  ? {
                 ...item ,
                 qty,
-            }:item)
+            }
+            :item
+        )
     )
   }
 

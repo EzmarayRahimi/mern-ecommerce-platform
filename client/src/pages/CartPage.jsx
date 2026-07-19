@@ -1,5 +1,6 @@
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import CartItem from "../components/CartItem";
 
 function CartPage(){
 
@@ -22,17 +23,10 @@ function CartPage(){
 
         {
             cartItems.map((item)=>(
-                <div key={item._id}>
-                      
-                    <h1>{item.name}</h1>
-                     <p><strong>Price: </strong>${item.price}</p>
-      <p><strong>Details: </strong>{item.description}</p>
-      <p><strong>Category: </strong>{item.category}</p>
-      <p><strong>Quantity: </strong>{item.qty}</p>
-      <p><strong>Total: </strong>{item.price * item.qty}</p>
-
-
-                </div>
+               <CartItem 
+               key={item._id} 
+               item={item}
+               />
             ))
         }
 
