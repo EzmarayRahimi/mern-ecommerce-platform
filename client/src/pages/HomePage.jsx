@@ -1,13 +1,15 @@
 import { useState,useEffect } from "react"
 import productService from "../services/productService"
 import ProductCart from "../components/ProductCart"
-
+import SearchBar from "../components/SearchBar"
+import { useSearchParams } from "react-router-dom"
 function HomePage(){
 
       const [products , setProducts] = useState("")
       const [loading , setLoadin] = useState(false)
       const [error , setError] = useState("")
-
+      const [searchParams]= useSearchParams();
+      const keyword = searchParams.get("keyword") || "";
 useEffect(()=>{
     const fetchProducts = async ()=>{
 
@@ -15,7 +17,7 @@ useEffect(()=>{
             setLoadin(true)
             setError("")
 
-         const data = await productService.getProducts(); 
+         const data = await productService.getProducts(keyword); 
               
              setProducts(data.products)
 
@@ -27,7 +29,7 @@ useEffect(()=>{
         }
     }
     fetchProducts();
-},[])
+},[keyword])
 
 if(loading){
     return ( 
@@ -43,6 +45,7 @@ if(error){
  return(
     <div>
         <h1>HOME PAGE</h1>
+        <SearchBar/>
     {products.length === 0 ? (<h3>Not any products to show</h3>):(products.map((product)=>(
        <ProductCart
                key={product._id}
