@@ -3,6 +3,7 @@ import productService from "../services/productService"
 import ProductCart from "../components/ProductCart"
 import SearchBar from "../components/SearchBar"
 import { useSearchParams } from "react-router-dom"
+import CategoryFilter from "../components/CategoryFilter"
 function HomePage(){
 
       const [products , setProducts] = useState("")
@@ -10,6 +11,7 @@ function HomePage(){
       const [error , setError] = useState("")
       const [searchParams]= useSearchParams();
       const keyword = searchParams.get("keyword") || "";
+      const category = searchParams.get("category") || "";
 useEffect(()=>{
     const fetchProducts = async ()=>{
 
@@ -17,7 +19,7 @@ useEffect(()=>{
             setLoadin(true)
             setError("")
 
-         const data = await productService.getProducts(keyword); 
+         const data = await productService.getProducts(keyword,category); 
               
              setProducts(data.products)
 
@@ -29,7 +31,7 @@ useEffect(()=>{
         }
     }
     fetchProducts();
-},[keyword])
+},[keyword,category])
 
 if(loading){
     return ( 
@@ -46,6 +48,7 @@ if(error){
     <div>
         <h1>HOME PAGE</h1>
         <SearchBar/>
+        <CategoryFilter/>
     {products.length === 0 ? (<h3>Not any products to show</h3>):(products.map((product)=>(
        <ProductCart
                key={product._id}
