@@ -7,6 +7,7 @@ import ProtectedRoute from '../components/ProtectedRoute'
 import ProfilePage from '../pages/ProfilePage'
 import ProductDetailsPage from '../pages/ProductDetailsPage'
 import CartPage from '../pages/CartPage'
+import AdminProductsPage from '../pages/AdminProductsPage'
 
 import {Route, Routes } from 'react-router-dom'
 
@@ -25,6 +26,7 @@ import {Route, Routes } from 'react-router-dom'
             <Route path="/cart" element={<CartPage/>}/>
             <Route element={<ProtectedRoute/>}>
                 <Route path='/profile' element={<ProfilePage/>}/>
+                <Route path='/admin/products' element={<AdminProductsPage/>}/>
             </Route>
             </Route>
 
