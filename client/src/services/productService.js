@@ -27,9 +27,19 @@ const getProductById = async (id)=>{
 
     return data ;
 }
+ 
+const createProduct = async (productData)=>{
+    const {data} = await api.post('/products' , productData)
+    return data;
+}
+
+
+
 const productService = {
     getProducts,
-    getProductById
+    getProductById,
+    createProduct
+
 
 }
 

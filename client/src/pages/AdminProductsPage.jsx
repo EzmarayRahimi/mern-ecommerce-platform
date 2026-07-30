@@ -1,5 +1,6 @@
 import { useState , useEffect, use } from "react";
 import productService from '../services/productService'
+import { Link } from "react-router-dom";
 
 
 function AdminProductsPage (){
@@ -45,7 +46,9 @@ return(
         marginBottom:"20px"
        }}>
         <h1>Admin Products</h1>
+      <Link to="admin/products/create">
         <button>Create product</button>
+        </Link>
              <div>
                 <table 
                 border="1"

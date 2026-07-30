@@ -8,6 +8,7 @@ import ProfilePage from '../pages/ProfilePage'
 import ProductDetailsPage from '../pages/ProductDetailsPage'
 import CartPage from '../pages/CartPage'
 import AdminProductsPage from '../pages/AdminProductsPage'
+import CreateProductsPage from '../pages/CreateProductsPage'
 
 import {Route, Routes } from 'react-router-dom'
 
@@ -27,6 +28,7 @@ import {Route, Routes } from 'react-router-dom'
             <Route element={<ProtectedRoute/>}>
                 <Route path='/profile' element={<ProfilePage/>}/>
                 <Route path='/admin/products' element={<AdminProductsPage/>}/>
+                <Route path='/admin/products/create' element={<CreateProductsPage/>}/>
             </Route>
             </Route>
 
