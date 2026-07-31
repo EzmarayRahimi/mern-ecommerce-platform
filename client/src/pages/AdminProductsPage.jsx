@@ -46,7 +46,7 @@ return(
         marginBottom:"20px"
        }}>
         <h1>Admin Products</h1>
-      <Link to="admin/products/create">
+      <Link to="/admin/products/create">
         <button>Create product</button>
         </Link>
              <div>
@@ -74,7 +74,10 @@ return(
                                 <td>{product.category}</td>
                                 <td style={{paddingLeft:"20px",}}>{product.countInStock}</td>
                                 <td>
-                                    <button>Edite</button>
+                                    <Link to={`/admin/products/${product._id}/edit`}>
+                                      <button>Edite</button>
+                                    </Link>
+                                  
                                     <button style={{marginLeft:"10px",}}>Delete</button>
                                 </td>
                                </tr>

@@ -6,7 +6,7 @@ const router = require('express').Router()
 router.get('/',getProducts)
 
 // create a new product
-router.post('/',createProduct)
+router.post('/',protect,admin,createProduct)
 
 //get product by id 
 router.get('/:id',getProductById)

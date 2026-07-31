@@ -33,12 +33,18 @@ const createProduct = async (productData)=>{
     return data;
 }
 
+const updateProduct = async (id , productData)=>{
+           const {data} = await api.put(`/products/${id}` ,productData)
+        
+           return data;
+}
 
 
 const productService = {
     getProducts,
     getProductById,
-    createProduct
+    createProduct,
+    updateProduct
 
 
 }
