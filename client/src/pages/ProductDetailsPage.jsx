@@ -52,10 +52,11 @@ return(
     <div>
         <h1>{product.name}</h1>
 
-        <img src={`http://localhost:5000${product.images[0]}`} 
+        <img src={`http://localhost:3000${product.images[0]}`} 
         alt={product.name}
         width="300"
         />
+       
       <p><strong>Price: </strong>${product.price}</p>
       <p><strong>Details: </strong>{product.description}</p>
       <p><strong>Category: </strong>{product.category}</p>

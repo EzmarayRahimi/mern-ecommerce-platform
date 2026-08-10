@@ -1,6 +1,7 @@
 import { useState , useEffect, lazy } from "react";
 import {useNavigate , useParams} from 'react-router-dom'
 import productService from "../services/productService";
+import uploadService from "../services/uploadService";
 
 function EditProductPage (){
 
@@ -12,6 +13,7 @@ function EditProductPage (){
     const [description, setDescription]=useState("")
     const [category , setCategory]=useState("")
     const [countInStock , setCountInStock]=useState("")
+    const [images,setImages]=useState([])
 
     const [loading , setLoading]=useState(true)
     const [error , setError]=useState("")
@@ -30,6 +32,7 @@ function EditProductPage (){
               setDescription(data.description)
               setCategory(data.category)
               setCountInStock(data.countInStock)
+              setImages(data.images)
         }catch(err){
                setError(err.response?.data?.message||"failed to load product!")
         }finally{
@@ -37,6 +40,17 @@ function EditProductPage (){
         }
         
     }
+  const uploadFileHandler=async (e)=>{
+    try{
+        const uploadImages = await uploadService.uploadImages(
+            e.target.files        )
+        setImages(uploadImages)
+       
+
+    }catch(err){
+        setError(err.response?.data?.message || "upload failed")
+    }
+  } 
 
     const submitHandler = async (e)=>{
       e.preventDefault()
@@ -49,7 +63,8 @@ function EditProductPage (){
             price,
             description,
             category,
-            countInStock
+            countInStock,
+            images
         })
 
 
@@ -77,6 +92,13 @@ function EditProductPage (){
             <h1>Edit Product</h1> 
 
             <form onSubmit={submitHandler}>
+               <input 
+                   type="file"
+                   multiple
+                   onChange={uploadFileHandler}
+                />
+                <br /><br />
+
                 <input type="text"
                 value={name}
                 onChange={(e)=>setName(e.target.value)} 

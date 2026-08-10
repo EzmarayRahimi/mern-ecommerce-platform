@@ -6,13 +6,13 @@ const createProduct = async (req , res , next )=>{
       
       try{
 
-            const imagepaths = req.files ? req.files.map(file =>  `/${file.path}`): []
-            const {name ,price ,description ,category ,countInStock ,rating} = req.body 
-            
+
+            const {name ,price,images ,description ,category ,countInStock ,rating} = req.body 
+         
             const product = new Product({
                 name,
                 price,
-                images:  imagepaths,
+                images,
                 description ,
                 category,
                 rating
@@ -111,11 +111,9 @@ const updateProduct = async (req , res , next ) =>{
            }
 
 
-           const {name , price , description,category , countInStock , rating} = req.body 
+           const {name , price ,images, description,category , countInStock , rating} = req.body 
 
-           if(req.files && req.files.length > 0){
-            product.images = req.files.map(file => `/${file.path}`)
-           }
+
 
  product.name = name || product.name 
  product.price = price || product.price
@@ -124,6 +122,9 @@ const updateProduct = async (req , res , next ) =>{
  product.countInStock = countInStock || product.countInStock
  product.rating = rating || product.rating
  
+          if (images) {
+    product.images = images;
+}
 
  const updated = await product.save()
  res.json(updated)

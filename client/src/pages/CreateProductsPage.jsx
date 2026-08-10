@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import productService from "../services/productService";
+import uploadService from "../services/uploadService";
 
 
 function CreateProductsPage (){
@@ -12,9 +13,24 @@ function CreateProductsPage (){
     const [description , setDesciption]=useState("")
     const [category , setCategory]=useState("")
     const [countInStock , setCountInStock]=useState("")
+    const [images,setImages]=useState([])
 
     const [loading ,setLoading]=useState(false)
     const [error , setError] = useState("")
+
+
+    const uploadFileHandler = async (e)=>{
+      try{
+        const uploadImages = await uploadService.uploadImages(e.target.files )
+        console.log(uploadImages)
+             setImages(uploadImages)
+               
+      }catch(err){
+        console.log(err)
+        console.log(err.response)
+        setError(err.response?.data?.message || "upload failed!")
+      }
+    }
 
 const submitHandler = async (e)=>{
   e.preventDefault();
@@ -22,13 +38,14 @@ const submitHandler = async (e)=>{
      try{
         setLoading(true)
         setError("")
-
+            console.log(images)
         await  productService.createProduct({
           name,
           price,
           description,
           category,
-          countInStock
+          countInStock,
+          images
         })
           navigate('/admin/products');
      }catch(err){
@@ -36,6 +53,7 @@ const submitHandler = async (e)=>{
      }finally{
         setLoading(false)
      }
+  
 
 }
 
@@ -46,6 +64,16 @@ return(
         {error && <p style={{color:"red"}}>{error}</p>}
 
         <form onSubmit={submitHandler}>
+                  <div>
+                   <label>images </label>
+            <input 
+            type="file" 
+           multiple
+            onChange={uploadFileHandler}
+             /> 
+            </div>
+            <br />
+
             <div>
                    <label>Name: </label>
             <input 

@@ -2,6 +2,8 @@
 
 function   ProductCart({product}){
 
+
+
     return( 
   <div
       style={{
@@ -11,7 +13,7 @@ function   ProductCart({product}){
         borderRadius: "8px",
       }}
     >
-     <img src={`http://localhost:5000${product.images[0]}`} 
+     <img src={`http://localhost:3000${product.images[0]}`} 
     alt={product.name}
     width="200"/>
 

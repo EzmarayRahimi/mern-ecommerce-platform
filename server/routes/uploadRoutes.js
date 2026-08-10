@@ -5,7 +5,9 @@ const upload = require("../middleware/uploadMiddleware")
 
 
 router.post('/',upload.array('images',5) , (req , res )=>{
-          const imagePaths = req.files.map(file => `/${file.path}`)
+     const imagePaths = req.files.map(
+  (file) => `/${file.path.replace(/\\/g, "/")}`
+);
 
 
           res.json(imagePaths)
