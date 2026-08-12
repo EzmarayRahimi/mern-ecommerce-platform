@@ -8,7 +8,7 @@ const getorders = async ()=>{
 }
 
 const getOrderById = async (id)=>{
-    const {data} = await api.get(`/order${id}`)
+    const {data} = await api.get(`/order/${id}`)
     return data;
 }
 
