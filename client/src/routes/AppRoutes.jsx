@@ -10,6 +10,7 @@ import CartPage from '../pages/CartPage'
 import AdminProductsPage from '../pages/AdminProductsPage'
 import CreateProductsPage from '../pages/CreateProductsPage'
 import EditProductPage from '../pages/EditProductPage'
+import PlaceOrderPage from '../pages/PlaceOrderPage'
 
 import {Route, Routes } from 'react-router-dom'
 
@@ -31,6 +32,7 @@ import {Route, Routes } from 'react-router-dom'
                 <Route path='/admin/products' element={<AdminProductsPage/>}/>
                 <Route path='/admin/products/create' element={<CreateProductsPage/>}/>
                 <Route path='/admin/products/:id/edit' element={<EditProductPage/>}/>
+                <Route path='/placeorder' element={<PlaceOrderPage/>}/>
             </Route>
             </Route>
 
