@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
 import orderService from "../services/orderService";
-import order from "../../../server/models/order";
+
 
 function PlaceOrderPage (){
 
@@ -15,19 +15,19 @@ function PlaceOrderPage (){
          setLoading(true)
         setError("")
 
-        const data = await orderService.createOrder()
+        const order = await orderService.createOrder();
 
         navigate(`/orders/${order._id}`)
        }catch(err){
         setError(err.response?.data?.message || "Place order failed !")
        }finally{
-         setLoadin(false)
+         setLoading(false)
        }
     }
 
     return (
         <div className="contaner">
-            <h1>Place order </h1>
+            <h1>Place order page </h1>
            {error && <p style={{ color: "red" }}>{error}</p>}
             <p>click here to create your order</p>
 

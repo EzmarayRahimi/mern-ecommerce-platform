@@ -1,8 +1,9 @@
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
 
 function CartPage(){
+    const navigate = useNavigate()
 
     const {cartItems}= useCart()
 
@@ -29,6 +30,13 @@ function CartPage(){
                />
             ))
         }
+
+        <hr />
+        <h2>Total:${
+                      cartItems.reduce((total,item)=> total + item.price * item.qty ,0 )
+                        }</h2>
+
+                        <button onClick={()=> navigate('/placeorder') } disabled={cartItems.length===0} >CheckOut</button>
 
        </div>
     )

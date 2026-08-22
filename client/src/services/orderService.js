@@ -1,4 +1,4 @@
-import { getOrders } from '../../../server/controllers/orderController';
+
 import api from './api';
 
 
@@ -18,7 +18,7 @@ const createOrder = async () =>{
 }
 const  orderService = {
                getOrderById,
-               getOrders,
-               createOrder
+               getorders,
+               createOrder,
 }
 export default  orderService
