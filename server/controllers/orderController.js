@@ -31,7 +31,7 @@ const createOrder = async (req,res)=>{
 
 const getOrders = async (req ,res ) => {
 
-       const orders = await Order.findOne({user:req.user._id}).populate('orderItems.product')
+       const orders = await Order.find({user:req.user._id,}).populate('orderItems.product')
 
        if(!orders){
         res.status(404)
