@@ -1,34 +1,29 @@
-const Cart = require('../models/cart')
+
 const Order = require('../models/order')
 
 
+//create order 
+const createOrder = async (req,res)=>{
+            console.log("req body ", req.body)
+    const {orderItems , totalPrice} = req.body
 
-//Create Order 
-
-const createOrder = async (req,res) => {
-     const cart = await Cart.findOne({user:req.user._id})
-
-     if(!cart || cart.products.length === 0 ){
+    if(!orderItems || orderItems.length ===  0){
         res.status(400)
-                      throw new Error("cart is empty ! ")
-     }
+        throw new Error("cart is empty! ")
+    
+    }
 
-     let total = 0 
+    const formattedItems = orderItems.map((item)=>({
+        product : item._id ,
+        quantity : item.qty,
+    }));
 
-     cart.products.forEach(item => {total += item.quantity * 100 })
-
-      const order = await Order.create({
-        user : req.user._id ,
-        orderItems : cart.products,
-        totalPrice: total 
-      })   
-
-      cart.products = []
-      await cart.save()
-
-      res.status(200).json(order)
-
-
+    const order = await Order.create({
+         user: req.user._id,
+         orderItems : formattedItems,
+         totalPrice,
+    })
+    res.status(201).json(order)
 }
 
 

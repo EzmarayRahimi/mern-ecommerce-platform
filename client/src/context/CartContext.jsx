@@ -54,13 +54,18 @@ const CartContext = createContext();
         )
     )
   }
+  const clearCart = () =>{
+    setCartItems([])
+    localStorage.removeItem("cartItems")
+  }
 
   return (
     <CartContext.Provider value={{
        cartItems ,
     addToCart,
     removeFromCart,
-    updateQuantity
+    updateQuantity,
+    clearCart
     }}>{children}</CartContext.Provider>
   )
 

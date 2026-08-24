@@ -12,8 +12,8 @@ const getOrderById = async (id)=>{
     return data;
 }
 
-const createOrder = async () =>{
-    const {data} = await api.post('/order')
+const createOrder = async (orderData) =>{
+    const {data} = await api.post('/order',orderData)
     return data ;
 }
 const  orderService = {
