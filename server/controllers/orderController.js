@@ -47,7 +47,7 @@ const getOrders = async (req ,res ) => {
 
 const getOrderById = async ( req , res ) =>{
 
-    const order = await Order.findById(req.params.id)
+    const order = await Order.findById(req.params.id).populate("orderItems.product")
 
     if(!order){
         res.status(400)

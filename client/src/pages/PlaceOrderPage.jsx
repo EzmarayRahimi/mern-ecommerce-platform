@@ -26,8 +26,8 @@ function PlaceOrderPage (){
         });
         clearCart();
 
-        // navigate(`/placeorder/${order._id}`)
-        navigate("/placeorder")
+        navigate(`/orders/${order._id}`)
+       
 
        }catch(err){
         setError(err.response?.data?.message || " failed  to create order!")

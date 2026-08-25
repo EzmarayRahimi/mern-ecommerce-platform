@@ -12,6 +12,8 @@ import CreateProductsPage from '../pages/CreateProductsPage'
 import EditProductPage from '../pages/EditProductPage'
 import PlaceOrderPage from '../pages/PlaceOrderPage'
 import MyOrderPage from '../pages/MyOrdersPage'
+import OrderDetailsPage from '../pages/OrderDetailsPage'
+
 
 
 import {Route, Routes } from 'react-router-dom'
@@ -36,6 +38,7 @@ import {Route, Routes } from 'react-router-dom'
                 <Route path='/admin/products/:id/edit' element={<EditProductPage/>}/>
                 <Route path='/placeorder' element={<PlaceOrderPage/>}/>
                 <Route path='/orders' element={<MyOrderPage/>}/>
+                <Route path='/orders/:id' element={<OrderDetailsPage/>}/>
 
             </Route>
             </Route>
