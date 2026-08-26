@@ -29,7 +29,7 @@ const createOrder = async (req,res)=>{
 
 //Get my order 
 
-const getOrders = async (req ,res ) => {
+const getMyOrders = async (req ,res ) => {
 
        const orders = await Order.find({user:req.user._id,}).populate('orderItems.product')
 
@@ -60,9 +60,41 @@ const getOrderById = async ( req , res ) =>{
 
 }
 
+//admin orders
+
+const getOrders = async (req, res)=>{
+    const orders = await Order.find({})
+    .populate("user","name","email")
+    .populate("orderItems.product")
+    .sort({createdAt : -1 })
+       
+    res.json(orders)
+}
+
+//update status 
+const updateOrderStatus = async (req,res) =>{
+    const {status} = req.body
+
+    const order = await Order.findById(req.params.id)
+
+    if(!order){
+        res.status(400)
+        throw new Error("Order Not Found !")
+    }
+
+    order.status = status 
+
+    const updatedOrder = 
+    await order.save()
+    res.json(updatedOrder)
+
+}
+
 module.exports = {
     createOrder,
+    getMyOrders,
     getOrders,
-    getOrderById
+    getOrderById,
+    updateOrderStatus
 }
 
