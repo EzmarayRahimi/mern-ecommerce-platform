@@ -33,9 +33,8 @@ const getMyOrders = async (req ,res ) => {
 
        const orders = await Order.find({user:req.user._id,}).populate('orderItems.product')
 
-       if(!orders){
-        res.status(404)
-                        throw new Error("You don't have any order yet !")
+       if(orders.length === 0){
+        return res.json([])
        }
       
        res.json(orders)
@@ -64,7 +63,7 @@ const getOrderById = async ( req , res ) =>{
 
 const getOrders = async (req, res)=>{
     const orders = await Order.find({})
-    .populate("user","name","email")
+    .populate("user","name email")
     .populate("orderItems.product")
     .sort({createdAt : -1 })
        

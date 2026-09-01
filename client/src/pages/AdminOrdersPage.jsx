@@ -8,18 +8,19 @@ function AdminOrdrsPage(){
 
 
     useEffect(()=>{
-        fetchOrder()
+        fetchOrders()
     },[])
 
-    const fetchOrder= async ()=>{
+    const fetchOrders= async ()=>{
         const data = await orderService.getOrders()
         SetOrders(data)
     }
 
-    const handlStatusChange = (id , status)=>{
-          await orderService.updateOrderStatus(id,status)
+    const handlStatusChange =async (id , status)=>{
+          await
+           orderService.updateOrderStatus(id,status)
 
-          fetchOrder()
+          fetchOrders()
     }
 
 
@@ -38,7 +39,7 @@ function AdminOrdrsPage(){
             </tr>
         </thead>
         
-            {ordres.map((order)=>( 
+            {orders.map((order)=>( 
                 <tbody>
                     <tr key={order._id}>
                         <td>{order.user?.name}</td>
@@ -50,9 +51,12 @@ function AdminOrdrsPage(){
                             <option value="shipped">shipped</option>
                             <option value="delivered">delivered</option>
                         </select>
-                    </tr>
-                    <td>{new Data(order.createAt).toLocalDateString()}</td>
+
+                              <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                     <td><Link to={`/orders/${order._id}`}> view</Link></td>
+                    </tr>
+
+              
 
                 </tbody>
             ))}

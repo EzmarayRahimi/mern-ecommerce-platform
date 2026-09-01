@@ -3,7 +3,7 @@ import api from './api';
 
 
 const getMyOrders = async ()=>{
-    const {data} = await  api.get('/order/myorder')
+    const {data} = await  api.get('/order/myorders')
     return data;
 }
 

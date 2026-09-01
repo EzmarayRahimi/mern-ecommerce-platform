@@ -17,7 +17,7 @@ function MyOrderPage (){
             setLoading(true)
             setError("")
 
-            const data = await orderService.getorders()
+            const data = await orderService.getMyOrders()
             setOrders(data)
             
 

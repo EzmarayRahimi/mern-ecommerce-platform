@@ -7,10 +7,11 @@ const router = require('express').Router()
 router.get('/', protect,admin,getOrders)
 //Create Order
 router.post('/' , protect,createOrder)
-//Get order by id 
-router.get('/:id', protect, getOrderById)
 //get My order
 router.get('/myorders', protect,getMyOrders)
+//Get order by id 
+router.get('/:id', protect, getOrderById)
+
 //update status
 router.put('/:id/status',protect,admin, updateOrderStatus)
 

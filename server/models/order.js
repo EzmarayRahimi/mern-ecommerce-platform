@@ -28,6 +28,6 @@ const orderSchema = new mongoose.Schema({
     default : "pending"
   }
 
-},{timestapms : true})
+},{timestamps : true})
 
 module.exports = mongoose.model('Order',orderSchema)
