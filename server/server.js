@@ -6,6 +6,7 @@ const authRoutes = require('./routes/authRoutes')
 const cartRoutes = require('./routes/cartRoutes')
 const orderRoutes = require('./routes/orderRoutes')
 const uploadRoutes = require('./routes/uploadRoutes')
+const adminRoutes = require('./routes/adminRoutes')
 const {notFound , errorHandler} = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
 
@@ -34,6 +35,9 @@ app.use('/api/order',orderRoutes)
 
 //Uplad routes
 app.use('/api/upload',uploadRoutes)
+
+//admin Routes
+app.use('/api/admin',adminRoutes)
 
 
 // Error Handling 
