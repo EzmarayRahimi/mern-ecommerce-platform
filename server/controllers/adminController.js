@@ -5,7 +5,7 @@ const Order = require("../models/order")
 
 const getDashboardState = async (req,res)=>{
 
-    const totalUser = await User.countDocuments()
+    const totalUsers = await User.countDocuments()
 
     const totalProducts = await Product.countDocuments()
 
@@ -15,14 +15,14 @@ const getDashboardState = async (req,res)=>{
 
     const totalRevenue =  orders.reduce((sum ,order)=> sum + order.totalPrice,0)
 
-    const penddingOrders = await Order.countDocuments({status : "pendding"})
+    const penddingOrders = await Order.countDocuments({status : "pending"})
 
     const deliveredOrders = await Order.countDocuments({status : "delivered"}) 
 
 res.json({
     totalOrders,
     totalProducts,
-    totalUser,
+    totalUsers,
     totalRevenue,
     penddingOrders,
     deliveredOrders

@@ -22,7 +22,7 @@ function CreateProductsPage (){
     const uploadFileHandler = async (e)=>{
       try{
         const uploadImages = await uploadService.uploadImages(e.target.files )
-        console.log(uploadImages)
+    
              setImages(uploadImages)
                
       }catch(err){
