@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import adminService from "../services/adminService";
+import { Link } from "react-router-dom";
 
 
 function AdminUsersPage(){
@@ -74,7 +75,7 @@ return(
             <td>{user.email}</td>
             <td>{user.isAdmin ? "Yes" : "No"}</td>
             <td>
-                <Link>Edit</Link> {'|'}
+                <Link to={`/admin/users/${user._id}/edit`}>Edit</Link> {'|'}
                 <button onClick={()=>handelDelete(user._id)}>Delete
                 </button>
             </td>

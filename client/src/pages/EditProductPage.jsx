@@ -72,7 +72,7 @@ function EditProductPage (){
 
 
       }catch(err){
-               setError(err.response?.data?.message||"failed to load product!")
+               setError(err.response?.data?.message||"failed to update product")
          
       }finally{
        setLoading(false)

@@ -15,6 +15,8 @@ import MyOrderPage from '../pages/MyOrdersPage'
 import OrderDetailsPage from '../pages/OrderDetailsPage'
 import AdminOrdrsPage from '../pages/AdminOrdersPage'
 import AdminDashboardPage from '../pages/AdminDashboardPage'
+import AdminUsersPage from '../pages/AdminUsersPage'
+import AdminUserEditPage from '../pages/AdminUserEditpage'
 
 
 import {Route, Routes } from 'react-router-dom'
@@ -42,6 +44,8 @@ import {Route, Routes } from 'react-router-dom'
                 <Route path='/orders/:id' element={<OrderDetailsPage/>}/>
                 <Route path='/admin/orders' element={<AdminOrdrsPage/>}/>
                 <Route path='/admin/dashboard' element={<AdminDashboardPage/>}/>
+                <Route path='/admin/users' element={<AdminUsersPage/>}/>
+                <Route path='/admin/users/:id/edit' element={<AdminUserEditPage/>}/>
 
             </Route>
             </Route>
