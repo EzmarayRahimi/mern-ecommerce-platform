@@ -1,17 +1,11 @@
 import {useNavigate,Link} from 'react-router-dom'
 import {useAuth} from '../context/AuthContext'
-import adminService from '../services/adminService'
-
-
-
-
-
 
 export default function Header(){
     const navigate = useNavigate()
     const {userInfo ,logoutUser} = useAuth()
+    console.log(userInfo)
   
-            
 const handlLogout=()=> {
         logoutUser()
         navigate("/login")
@@ -23,37 +17,30 @@ return(
 >
      <Link to="/">Home </Link>
 
-    {!userInfo && (
+{!userInfo && (
         <>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
         </>
     )}
-
-
-    {userInfo &&  (
+{userInfo &&  (
         <> 
         <Link to='/profile'>Profile</Link>
         <Link to='/orders'>My Orders</Link>
         <Link to="/cart">My Cart 🛒</Link>
+        <p>Welcome Mr/Mss <span>{userInfo.name}</span></p>
           <button onClick={handlLogout}> <span> ________</span>LogOut</button>
-
         </>
     )}
 
 
-    {true &&(
-     
-        
-        <>
-    <Link to="/admin/dashboard">Admin Dashboard</Link>
-    <Link to="/admin/orders">Admin Orders</Link>
-    <Link to="/admin/products">Admin Products</Link>
-    <Link to="/admin/users">Admin Users</Link>
-         
-
-        
-        </>
+{userInfo?.isAdmin &&(
+    <>
+        <Link to="/admin/dashboard">Admin Dashboard</Link>
+        <Link to="/admin/orders">Admin Orders</Link>
+        <Link to="/admin/products">Admin Products</Link>
+        <Link to="/admin/users">Admin Users</Link> 
+    </>
     )
      }
          
