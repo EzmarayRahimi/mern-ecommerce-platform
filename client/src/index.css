@@ -1,2 +1,30 @@
+
+
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+• {
+box-sizing: border-box;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+margin: 0;
+font-family: 'Poppins', sans-serif;
+background: #f8fafc;
+color: #111827;
+}
+
+button,
+input,
+select {
+font-family: inherit;
+}
+
+a {
+text-decoration: none;
+}
