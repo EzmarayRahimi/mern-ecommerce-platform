@@ -1,49 +1,93 @@
+
+
+
 import { useCart } from "../context/CartContext";
 
-   function CartItem({item}){
+function CartItem({ item }) {
+  const { updateQuantity, removeFromCart } = useCart();
 
-    const {updateQuantity , removeFromCart} = useCart()
+  const increaseQty = () => {
+    updateQuantity(item._id, item.qty + 1);
+  };
 
-
-    const increaseQty = ()=>{
-        updateQuantity(item._id , item.qty + 1 )
-       
+  const decreaseQty = () => {
+    if (item.qty === 1) {
+      removeFromCart(item._id);
+      return;
     }
 
-    const decreaseQty = ()=>{
-        if(item.qty===1){
-            removeFromCart(item._id)
-            return;
-        }
+    updateQuantity(item._id, item.qty - 1);
+  };
 
-        updateQuantity(item._id , item.qty - 1)
-    }
+  return (
+    <div className="rounded-2xl bg-white p-4 shadow-sm sm:p-5">
+      <div className="flex gap-4 sm:gap-6">
 
-    return(
-             <div style={{
-                display:"flex",
-                gap : "20px",
-                marginBottom:"20px",
-                padding:"15px",
-                border: "1px solid #ddd"
+        {/* Product Image */}
+        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:h-32 sm:w-32">
+          <img
+            src={item.images[0]}
+            alt={item.name}
+            className="h-full w-full object-cover"
+          />
+        </div>
 
-             }}>
-            
-            <img src={item.images[0]} alt={item.name} width={120}/>
+        {/* Product Information */}
+        <div className="flex min-w-0 flex-1 flex-col">
+
+          <div className="flex items-start justify-between gap-3">
             <div>
-            <h3>{item.name}</h3>
-            <p>Price: {item.price}</p>
-        <button onClick={increaseQty}>+</button>
-        <span style={{margin:"0 10px"}}>{item.qty}</span>
-        <button onClick={decreaseQty}>-</button>
-             <p>Total: {item.price * item.qty}</p>
-        <button onClick={()=>removeFromCart(item._id)} style={{marginTop:"10px"}}>Remove</button>
+              <h3 className="line-clamp-2 text-sm font-semibold text-slate-900 sm:text-base">
+                {item.name}
+              </h3>
 
+              <p className="mt-1 text-sm text-slate-500">
+                ${item.price.toFixed(2)} each
+              </p>
+            </div>
 
-             </div>
-             </div>
-    )
+            {/* Remove */}
+            <button
+              onClick={() => removeFromCart(item._id)}
+              className="flex-shrink-0 text-xs font-medium text-red-500 transition hover:text-red-600"
+            >
+              Remove
+            </button>
+          </div>
 
-   }
+          <div className="mt-auto flex items-end justify-between gap-3 pt-4">
 
-   export default CartItem
+            {/* Quantity */}
+            <div className="flex items-center rounded-lg border border-slate-200">
+              <button
+                onClick={decreaseQty}
+                className="flex h-9 w-9 items-center justify-center text-lg font-medium text-slate-600 transition hover:bg-slate-50"
+              >
+                −
+              </button>
+
+              <span className="flex h-9 min-w-9 items-center justify-center border-x border-slate-200 px-2 text-sm font-semibold text-slate-800">
+                {item.qty}
+              </span>
+
+              <button
+                onClick={increaseQty}
+                className="flex h-9 w-9 items-center justify-center text-lg font-medium text-slate-600 transition hover:bg-slate-50"
+              >
+                +
+              </button>
+            </div>
+
+            {/* Item Total */}
+            <p className="text-base font-bold text-slate-900">
+              ${(item.price * item.qty).toFixed(2)}
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default CartItem;
